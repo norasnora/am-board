@@ -88,10 +88,10 @@
 			    	html = []
 			    	html.push('<p>');
 			    	$.each(data, function(index, element) {
-			           html.push('<b>' + element['datums'].replace(',','</b>')+' '+element['zina']+'<br>');
+			           html.push('<b>' + element['datums']+'</b> '+element['zina']+'<br>');
 			        });
 			        html.push('</p>');
-			        display.innerHTML = html;
+			        display.innerHTML = html.join("%");
 			            //$("#aktualitates").append(JSON.stringify(data));
 			        }, 
 			    error: function(jqXHR, textStatus, errorThrown) {
