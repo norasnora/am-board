@@ -119,6 +119,7 @@
 				url:'https://raw.githubusercontent.com/slikts/vardadienas/master/data/namedays.json',
 				dataType:'json',
 				success:function(data){
+					alert(data);
 					nameDay.innerHTML = data[today];
 
 				},
