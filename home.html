@@ -94,7 +94,7 @@
 		          html = []
 
 		          for(var i in JSON.stringify(this.responseText)){
-		          	html.append('<p>'+i['datums']+': '+i['zina']+'</p>');
+		          	html.push('<p>'+i['datums']+': '+i['zina']+'</p>');
 		          }
 		          display.innerHTML = html;
 		        } else {
