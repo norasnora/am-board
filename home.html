@@ -119,8 +119,8 @@
 				url:'https://raw.githubusercontent.com/slikts/vardadienas/master/data/namedays.json',
 				dataType:'json',
 				success:function(data){
-					alert(JSON.stringify(data));
-					nameDay.innerHTML = data['21-06'];
+					var result = JSON.parse(data);
+					nameDay.innerHTML = result['21-06'];
 
 				},
 				error:function(jqXHR, textStatus, errorThrown) {
