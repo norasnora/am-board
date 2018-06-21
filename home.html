@@ -92,7 +92,7 @@
       		xmlhttp.onreadystatechange = function() {
 		        if (this.readyState === 4 && this.status === 200) {
 		          html = []
-		          alert(this);
+		          alert(JSON.stringify(this));
 		          for(var i in this.responseText){
 		          	html.push('<p>'+i['datums']+': '+i['zina']+'</p>');
 		          }
