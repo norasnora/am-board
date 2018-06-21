@@ -87,12 +87,13 @@
 			    type:"GET", 
 			    url: "http://noskrien.lv/proc/tmp_am_zinas.php", 
 			    success: function(data) {
+			    	alert(data);
 			            $("#aktualitates").append(JSON.stringify(data));
 			        }, 
 			    error: function(jqXHR, textStatus, errorThrown) {
 			            alert(jqXHR.status);
 			        },
-			   dataType: "jsonp"
+			   dataType: "json"
 			});
 
     		//$('#aktualitates').load('https://www.mod.gov.lv/Aktualitates/Preses_pazinojumi.aspx #content_2_UpdatePanel1');
