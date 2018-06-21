@@ -86,7 +86,7 @@
     		$.ajax({
 			    type:"GET", 
 			    url: "http://noskrien.lv/proc/tmp_am_zinas.php", 
-			    dataType: "json"
+			    dataType: "json",
 			    success: function(data) {
 			    	$.each(data, function(index, element) {
 			            $('#aktualitates').append($('<p>', {
