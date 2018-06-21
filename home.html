@@ -90,7 +90,7 @@
 			    mm = '0'+mm
 			} 
 
-			today = dd + '-' + mm;
+			today = mm + '-' + dd;
 
     		var display = document.getElementById('aktualitates');
     		var nameDay = document.getElementById('nameDay');
@@ -120,9 +120,7 @@
 				dataType:'json',
 				success:function(data){
 					var result = JSON.parse(JSON.stringify(data));
-					alert(JSON.stringify(result));
-					alert(JSON.stringify(result["01-01"]));
-					nameDay.innerHTML = result[0];
+					nameDay.innerHTML = result[today];
 
 				},
 				error:function(jqXHR, textStatus, errorThrown) {
