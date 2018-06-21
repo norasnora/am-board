@@ -120,8 +120,8 @@
 				dataType:'json',
 				success:function(data){
 					var result = JSON.parse(JSON.stringify(data));
-					alert(result);
-					nameDay.innerHTML = result['21-06'];
+					alert(result[0]);
+					nameDay.innerHTML = result[0];
 
 				},
 				error:function(jqXHR, textStatus, errorThrown) {
