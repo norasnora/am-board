@@ -109,7 +109,7 @@
 			    success: function(data) {
 			    	html = []
 			    	$.each(data, function(index, element) {
-			           html.push('<p>'+element[index]['datums']+': '+element[index]['zina']+'</p>');
+			           html.push('<p>'+element['datums']+': '+element['zina']+'</p>');
 			        });
 			            display.innerHTML = html;
 			            //$("#aktualitates").append(JSON.stringify(data));
