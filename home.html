@@ -89,35 +89,35 @@
       		xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
       		xmlhttp.send();
 
-      		xmlhttp.onreadystatechange = function() {
-		        if (this.readyState === 4 && this.status === 200) {
-		          html = []
-		          alert(JSON.stringify(this));
-		          for(var i in this.responseText){
-		          	html.push('<p>'+i['datums']+': '+i['zina']+'</p>');
-		          }
-		          display.innerHTML = html;
-		        } else {
-		          display.innerHTML = "Loading...";
-		        };
-		      }
+      		// xmlhttp.onreadystatechange = function() {
+		      //   if (this.readyState === 4 && this.status === 200) {
+		      //     html = []
+		      //     alert(JSON.stringify(this));
+		      //     for(var i in this.responseText){
+		      //     	html.push('<p>'+i['datums']+': '+i['zina']+'</p>');
+		      //     }
+		      //     display.innerHTML = html;
+		      //   } else {
+		      //     display.innerHTML = "Loading...";
+		      //   };
+		      // }
 
-   //  		$.ajax({
-			//     type:"GET", 
-			//     url: "http://noskrien.lv/proc/tmp_am_zinas.php", 
-			//     dataType: "json",
-			//     success: function(data) {
-			//     	$.each(data, function(index, element) {
-			//             $('#aktualitates').append($('<p>', {
-			//                 text: element.zina
-			//             }));
-			//         });
-			//             //$("#aktualitates").append(JSON.stringify(data));
-			//         }, 
-			//     error: function(jqXHR, textStatus, errorThrown) {
-			//             alert(jqXHR.status);
-			//         }
-			// });
+    		$.ajax({
+			    type:"GET", 
+			    url: "http://noskrien.lv/proc/tmp_am_zinas.php", 
+			    dataType: "json",
+			    success: function(data) {
+			    	html = []
+			    	$.each(data, function(index, element) {
+			           html.push('<p>'+element[index]['datums']+': '+element[index]['zina']+'</p>');
+			        });
+			            display.innerHTML = html;
+			            //$("#aktualitates").append(JSON.stringify(data));
+			        }, 
+			    error: function(jqXHR, textStatus, errorThrown) {
+			            alert(jqXHR.status);
+			        }
+			});
 
     		//$('#aktualitates').load('https://www.mod.gov.lv/Aktualitates/Preses_pazinojumi.aspx #content_2_UpdatePanel1');
 
