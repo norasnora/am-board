@@ -83,22 +83,36 @@
     <script>
 
     	$(document).ready(function(){
-    		$.ajax({
-			    type:"GET", 
-			    url: "http://noskrien.lv/proc/tmp_am_zinas.php", 
-			    dataType: "json",
-			    success: function(data) {
-			    	$.each(data, function(index, element) {
-			            $('#aktualitates').append($('<p>', {
-			                text: element.zina
-			            }));
-			        });
-			            //$("#aktualitates").append(JSON.stringify(data));
-			        }, 
-			    error: function(jqXHR, textStatus, errorThrown) {
-			            alert(jqXHR.status);
-			        }
-			});
+    		var display = document.getElementById('aktualitates');
+    		var xmlhttp = new XMLHttpRequest();
+    		xmlhttp.open("GET", "http://noskrien.lv/proc/tmp_am_zinas.php");
+      		xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+      		xmlhttp.send();
+
+      		xmlhttp.onreadystatechange = function() {
+		        if (this.readyState === 4 && this.status === 200) {
+		          display.innerHTML = this.responseText;
+		        } else {
+		          display.innerHTML = "Loading...";
+		        };
+		      }
+
+   //  		$.ajax({
+			//     type:"GET", 
+			//     url: "http://noskrien.lv/proc/tmp_am_zinas.php", 
+			//     dataType: "json",
+			//     success: function(data) {
+			//     	$.each(data, function(index, element) {
+			//             $('#aktualitates').append($('<p>', {
+			//                 text: element.zina
+			//             }));
+			//         });
+			//             //$("#aktualitates").append(JSON.stringify(data));
+			//         }, 
+			//     error: function(jqXHR, textStatus, errorThrown) {
+			//             alert(jqXHR.status);
+			//         }
+			// });
 
     		//$('#aktualitates').load('https://www.mod.gov.lv/Aktualitates/Preses_pazinojumi.aspx #content_2_UpdatePanel1');
 
