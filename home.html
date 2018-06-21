@@ -50,8 +50,8 @@
             </div>
           </div>
           </div>
-          <div class="col-lg-6 col-md-">
-            <h4 style="text-align:left;">
+          <div class="col-lg-6 col-md-" style="text-align:left;">
+            <h4>
               <strong>Aktualitātes</strong>
             </h4>
             <div id="aktualitates">
@@ -88,7 +88,7 @@
 			    	html = []
 			    	html.push('<p>');
 			    	$.each(data, function(index, element) {
-			           html.push(element['datums']+': '+element['zina']+'<br>');
+			           html.push('<b>' + element['datums'].replace(',','</b>')+' '+element['zina']+'<br>');
 			        });
 			        html.push('</p>');
 			        display.innerHTML = html;
