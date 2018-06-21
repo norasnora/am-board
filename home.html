@@ -91,7 +91,12 @@
 
       		xmlhttp.onreadystatechange = function() {
 		        if (this.readyState === 4 && this.status === 200) {
-		          display.innerHTML = this.responseText;
+		          html = []
+
+		          for(var i in JSON.stringify(this.responseText)){
+		          	html.append('<p>'+i['datums']+': '+i['zina']+'</p>');
+		          }
+		          display.innerHTML = html;
 		        } else {
 		          display.innerHTML = "Loading...";
 		        };
