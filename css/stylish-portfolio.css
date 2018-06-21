@@ -180,9 +180,9 @@ h6 {
   -o-transition: all 0.4s ease 0s;
   transition: all 0.4s ease 0s;
 }
-#page-top{
+/*#page-top{
   color:#585b3c!important;
-}
+}*/
 .menu-toggle {
   position: fixed;
   right: 15px;
