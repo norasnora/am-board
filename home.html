@@ -101,6 +101,7 @@
 
     		var display = document.getElementById('aktualitates');
     		var nameDay = document.getElementById('nameDay');
+    		car photo = [];
 
     		$.ajax({
 			    type:"GET", 
@@ -142,7 +143,9 @@
 				dataType:'json',
 				success:function(data){
 					var result = JSON.parse(JSON.stringify(data));
-					nameDay.append(' ' + result[today]);
+					for(var i in result){
+						photos.push('<img src="' + result[i]+'" />')
+					}
 
 				},
 				error:function(jqXHR, textStatus, errorThrown) {
