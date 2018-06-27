@@ -135,6 +135,21 @@
 			        }
 			});
 
+
+			$.ajax({
+				type:"GET",
+				url:'http://am-board.herokuapp.com/api/photos',
+				dataType:'json',
+				success:function(data){
+					var result = JSON.parse(JSON.stringify(data));
+					nameDay.append(' ' + result[today]);
+
+				},
+				error:function(jqXHR, textStatus, errorThrown) {
+			            alert(jqXHR.status);
+			        }
+			});
+
     	})    	
 
 	</script>

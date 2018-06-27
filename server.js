@@ -1,6 +1,5 @@
 // content of index.js
-var namedays, extNamedays = require('vardadienas');
-var http = require('http');
+var https = require('https');
 const express = require('express');
 var request = require("request")
 const app = express();
@@ -8,13 +7,14 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 const server = app.listen(port);
-var today = new Date();
-var dd = today.getDate();
 
 
-var url = "http://noskrien.lv/proc/tmp_am_zinas.php"
-
-
+var Flickr = require("flickrapi"),
+    flickrOptions = {
+	  api_key: "1234ABCD1234ABCD1234ABCD1234ABCD",
+	  secret: "9764f13c05b7dd1e",
+	  endpoint:'https://api.flickr.com/services/rest/?method=flickr.people.getPublicPhotos'
+    };
 
 server.timeout = 1000 * 60 * 10; // 10 minutes
 
@@ -24,20 +24,36 @@ app.use(function (req, res, next) {
     next();
 });
 
-app.get('/api/main', (req, res) => {
-    res.send(JSON.stringify(namedays[dd]));
+app.get('/api/photos', (req, resp) => {
+	var cdata = [];
+	var str="";
+	var url = 'https://api.flickr.com/services/rest/?method=flickr.people.getPublicPhotos&user_id=52010134@N05&api_key=d9ad2d315dd33f36080a375d112ebbc9&format=json&nojsoncallback=1'
+	https.get(url, function(res) {
+     if (res.statusCode >= 200 && res.statusCode < 400) {
+     	res.on('data',function(data_){
+     		str += data_.toString();
+     		//data.push('https://www.flickr.com/photos/latvijas_armija/'+photoid);
+
+     	});
+     	res.on('end',()=>{
+     		try{
+     			const data = JSON.parse(str);
+     			arr = data['photos']['photo'];
+     			for(var i in arr){
+     				//console.log(i);
+     				cdata.push('https://www.flickr.com/photos/latvijas_armija/'+arr[i]['id']);
+     			}
+     			resp.send(JSON.stringify(cdata));
+
+     		}catch(er){
+     			console.log(er);
+     		}
+     	});
+     	
+     }
+   });
+
+
 })
 
-app.get('/api/aktualitates', (req, res) => {
-    // Set Content-Type differently for this particular API
-    res.set({'Content-Type': 'application/json'});
-	request({
-    url: url,
-    json: true
-	}, function (error, response, body) {
 
-	    if (!error && response.statusCode === 200) {
-	        res.send(body) // Print the json response
-	    }
-	})
-})
