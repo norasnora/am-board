@@ -53,7 +53,8 @@
               </ul>
             </div>
             <div class="col-sm-6 col-lg-6 col-md-6">
-              <div style="width:500px;height:500px;text-align:center;margin:auto;" ><object width="100%" height="350" classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000"  codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,40,0"> <param name="flashvars" value="offsite=true&amp;lang=en-us&amp;page_show_url=%2Fphotos%2Flatvijas_armija%2Fshow&amp;page_show_back_url=%2Fphotos%2Flatvijas_armija%2F&amp;user_id=52010134@N05" /> <param name="allowFullScreen" value="true" /> <param name="src" value="https://www.flickr.com/apps/slideshow/show.swf?v=71649" /> <embed width="500" height="500" type="application/x-shockwave-flash" src="https://www.flickr.com/apps/slideshow/show.swf?v=71649" flashvars="offsite=true&amp;lang=en-us&amp;page_show_url=%2Fphotos%2Flatvijas_armija%2Fshow&amp;page_show_back_url=%2Fphotos%2Flatvijas_armija%2F&amp;user_id=52010134@N05" allowFullScreen="true" /> </object><br /></div>
+				<div id="slideshow">
+				</div>
             </div>
           </div>
           </div>
@@ -83,7 +84,6 @@
     <!-- Custom scripts for this template -->
     <script src="js/stylish-portfolio.min.js"></script>
     <script>
-
     	$(document).ready(function(){
     		var today = new Date();
 			var dd = today.getDate();
@@ -101,7 +101,18 @@
 
     		var display = document.getElementById('aktualitates');
     		var nameDay = document.getElementById('nameDay');
-    		car photo = [];
+    		var div = document.getElementById('slideshow');
+    		var photos = [];
+
+    		$("#slideshow > div:gt(0)").hide();
+				setInterval(function() { 
+				  $('#slideshow > div:first')
+				    .fadeOut(1000)
+				    .next()
+				    .fadeIn(1000)
+				    .end()
+				    .appendTo('#slideshow');
+				},  3000);
 
     		$.ajax({
 			    type:"GET", 
@@ -139,13 +150,14 @@
 
 			$.ajax({
 				type:"GET",
-				url:'http://am-board.herokuapp.com/api/photos',
+				url:'http://localhost:3000/api/photos',
 				dataType:'json',
 				success:function(data){
 					var result = JSON.parse(JSON.stringify(data));
 					for(var i in result){
-						photos.push('<img src="' + result[i]+'" />')
+						photos.push('<div><img src="' + result[i]+'" width=500 height=400/></div>')
 					}
+					div.innerHTML=photos;
 
 				},
 				error:function(jqXHR, textStatus, errorThrown) {
