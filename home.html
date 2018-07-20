@@ -45,11 +45,7 @@
 					time_is_widget.init({Riga_z722:{template:"TIME<br>DATE", date_format:"dayname, dnum. monthname,"}});
 				</script>
               </h2>
-              <ul style="list-style-type: circle;">
-                <li><h6>Lorem ipsum dolor sit amet, consect</h6></li>
-                <li><h6>Lorem ipsum dolor sit amet, consect</h6></li>
-                <li><h6>Lorem ipsum dolor sit amet, consect</h6></li>
-                <li><h6>Lorem ipsum dolor sit amet, consect</h6></li>
+              <ul style="list-style-type: circle;" id="calendar">
               </ul>
             </div>
             <div class="col-sm-6 col-lg-6 col-md-6">
@@ -100,8 +96,11 @@
 			today = mm + '-' + dd;
 
     		var display = document.getElementById('aktualitates');
+    		var calendar = document.getElementById('calendar');
     		var nameDay = document.getElementById('nameDay');
     		var div = document.getElementById('slideshow');
+    		var today = new Date();
+			var dd = today.getDate();
     		var photos = [];
 
     		$("#slideshow > div:gt(0)").hide();
@@ -126,9 +125,28 @@
 			        });
 			        html.push('</p>');
 			        display.innerHTML = html.join("");
-			            //$("#aktualitates").append(JSON.stringify(data));
 			        }, 
 			    error: function(jqXHR, textStatus, errorThrown) {
+			            alert(jqXHR.status);
+			        }
+			});
+
+			$.ajax({
+				type:"GET",
+				url:'http://noskrien.lv/proc/tmp_am_cal.php',
+				dataType:'json',
+				success:function(data){
+			    	html = []
+			    	html.push('<li>');
+			    	var result = JSON.parse(JSON.stringify(data));
+			    	var items = result[dd];
+			    	$.each(items, function(index, element) {
+			           html.push('<h6>' + element+'</h6>');
+			        });
+			        html.push('</li>');
+			        calendar.innerHTML = html.join("");
+			        }, 
+				error:function(jqXHR, textStatus, errorThrown) {
 			            alert(jqXHR.status);
 			        }
 			});
@@ -146,7 +164,6 @@
 			            alert(jqXHR.status);
 			        }
 			});
-
 
 			$.ajax({
 				type:"GET",
