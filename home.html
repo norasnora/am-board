@@ -30,7 +30,6 @@
   gtag('js', new Date());
 
   gtag('config', 'UA-122855208-1');
-  ga('send', 'event', 'pageView');
 </script>
 
   <body id="page-top">
@@ -107,7 +106,7 @@
     		var today = new Date();
 			var dd = today.getDate();
 			var mm = today.getMonth()+1; 
-
+			ga('send', 'event', 'TimeOnPage', {'noInteraction':1}, '1', '11-30 seconds');
 			if(dd<10) {
 			    dd = '0'+dd
 			} 
