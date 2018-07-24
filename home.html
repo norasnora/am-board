@@ -30,6 +30,12 @@
   gtag('js', new Date());
 
   gtag('config', 'UA-122855208-1');
+  var trackOutboundLink = function(url) {
+   ga('send', 'event', 'outbound', 'click', url, {
+     'transport': 'beacon',
+     'hitCallback': function(){document.location = url;}
+   });
+}
 </script>
 
   <body id="page-top">
@@ -66,6 +72,7 @@
           <div class="col-lg-6 col-md-" style="text-align:left;">
             <h4>
               <strong>Aktualitātes</strong>
+              <h2 style="text-align: center;"><a href="http://www.rainbowresource.com/product/sku/059929" target="_blank" onclick="trackOutboundLink(‘Who was Ghandi?’); return false;">Buy <em>Who Was Ghandi?</em></a></h2>
             </h4>
             <div id="aktualitates">
 			    
@@ -89,17 +96,11 @@
     <!-- Custom scripts for this template -->
     <script src="js/stylish-portfolio.min.js"></script>
     <script>
-var trackOutboundLink = function(url) {
-   ga('send', 'event', 'outbound', 'click', url, {
-     'transport': 'beacon',
-     'hitCallback': function(){document.location = url;}
-   });
-}
+
     	$(document).ready(function(){
     		var today = new Date();
 			var dd = today.getDate();
 			var mm = today.getMonth()+1; 
-			trackOutboundLink("who was gandhi");
 			if(dd<10) {
 			    dd = '0'+dd
 			} 
