@@ -137,13 +137,11 @@
 				dataType:'json',
 				success:function(data){
 			    	html = []
-			    	html.push('<li>');
 			    	var result = JSON.parse(JSON.stringify(data));
 			    	var items = result[dd];
 			    	$.each(items, function(index, element) {
-			           html.push('<p><b>' + element+'<b></p>');
+			           html.push('<li><p><b>' + element+'<b></p></li>');
 			        });
-			        html.push('</li>');
 			        calendar.innerHTML = html.join("");
 			        }, 
 				error:function(jqXHR, textStatus, errorThrown) {
